@@ -41,3 +41,7 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Michalis: ignore unityLibrary as recommended https://pub.dev/packages/flutter_unity_widget
+unityLibrary
+UnityLibrary

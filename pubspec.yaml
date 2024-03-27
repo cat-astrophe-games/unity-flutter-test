@@ -36,6 +36,13 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
 
+  # Michalis: adding latest version following
+  # https://pub.dev/packages/flutter_unity_widget
+  # https://github.com/juicycleff/flutter-unity-view-widget/releases/tag/v2022.2.1
+  # Using 2022.2.0, not 2022.2.1, as there's fuw-2022.2.0.unitypackage
+  # https://github.com/juicycleff/flutter-unity-view-widget/tree/master/unitypackages
+  flutter_unity_widget: ^2022.2.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
