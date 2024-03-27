@@ -57,7 +57,7 @@ PlayerSettings:
   m_StackTraceTypes: 010000000100000001000000010000000100000001000000
   iosShowActivityIndicatorOnLoading: -1
   androidShowActivityIndicatorOnLoading: -1
-  iosUseCustomAppBackgroundBehavior: 0
+  iosUseCustomAppBackgroundBehavior: 1
   allowedAutorotateToPortrait: 1
   allowedAutorotateToPortraitUpsideDown: 1
   allowedAutorotateToLandscapeRight: 1
@@ -193,7 +193,7 @@ PlayerSettings:
   VisionOSTargetOSVersionString: 1.0
   uIPrerenderedIcon: 0
   uIRequiresPersistentWiFi: 0
-  uIRequiresFullScreen: 1
+  uIRequiresFullScreen: 0
   uIStatusBarHidden: 1
   uIExitOnSuspend: 0
   uIStatusBarStyle: 0
