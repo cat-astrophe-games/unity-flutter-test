@@ -1,8 +1,10 @@
-# flutter_application_1
+# Test Flutter + Unity by Cat-astrophe Games for Questo
 
-A new Flutter project.
+Refs:
+- https://pub.dev/packages/flutter_unity_widget
+- https://github.com/juicycleff/flutter-unity-view-widget/tree/master/example
 
-## Getting Started
+## Getting Started with Flutter
 
 This project is a starting point for a Flutter application.
 
