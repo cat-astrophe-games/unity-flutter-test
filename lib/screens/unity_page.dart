@@ -35,6 +35,7 @@ class UnityPage extends StatefulWidget {
 class _UnityPageState extends State<UnityPage> {
   UnityWidgetController? _unityWidgetController;
   double _sliderValue = 0.0;
+  String _rotationFromUnity = "";
 
   @override
   Widget build(BuildContext context) {
@@ -79,23 +80,24 @@ class _UnityPageState extends State<UnityPage> {
                   children: <Widget>[
                     const Padding(
                       padding: EdgeInsets.only(top: 20),
-                      child: Text("Rotation speed:"),
+                      child: Text("Change position in Unity:"),
                     ),
                     Slider(
                       onChanged: (value) {
                         setState(() {
                           _sliderValue = value;
                         });
-                        setRotationSpeed(value.toString());
+                        sendToUnity(value.toString());
                       },
                       value: _sliderValue,
-                      min: 0,
-                      max: 20,
+                      min: 0.0,
+                      max: 1.0,
                     ),
                     ElevatedButton(
                       onPressed: buttonBackPressed,
-                      child: const Text('Back'),
+                      child: const Text('Back (page without Unity)'),
                     ),
+                    Text(_rotationFromUnity),
                   ],
                 ),
               ),
@@ -111,18 +113,26 @@ class _UnityPageState extends State<UnityPage> {
     Navigator.pop(context);
   }
 
-  // Communcation from Flutter to Unity
-  void setRotationSpeed(String speed) {
+  // Communication from Flutter to Unity
+  void sendToUnity(String valueToSend) {
     _unityWidgetController?.postMessage(
       'Cube',
-      'SetRotationSpeed',
-      speed,
+      'MessageFromFlutter',
+      valueToSend,
     );
   }
 
   // Communication from Unity to Flutter
   void onUnityMessage(message) {
     debugPrint('Received message from unity: ${message.toString()}');
+    setState(() {
+      // This call to setState tells the Flutter framework that something has
+      // changed in this State, which causes it to rerun the build method below
+      // so that the display can reflect the updated values. If we changed
+      // xxx without calling setState(), then the build method would not be
+      // called again, and so nothing would appear to happen.
+      _rotationFromUnity = message.toString();
+    });
   }
 
   // Callback that connects the created controller to the unity controller
