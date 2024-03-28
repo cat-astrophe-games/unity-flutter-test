@@ -47,6 +47,10 @@
 	</array>
 
 	<key>NSCameraUsageDescription</key>
-	<string>TestApp uses Cameras</string>
+	<string>CAG test app uses cameras</string>
+
+	<!-- Following https://github.com/Baseflow/flutter-permission-handler/blob/main/permission_handler/example/ios/Runner/Info.plist -->
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>CAG test app uses photos</string>
 </dict>
 </plist>

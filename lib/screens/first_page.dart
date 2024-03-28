@@ -5,6 +5,7 @@
 */
 
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import 'unity_page.dart';
 
@@ -27,6 +28,8 @@ class FirstPage extends StatefulWidget {
 }
 
 class _FirstPageState extends State<FirstPage> {
+  String _permissionsStatus = "No permissions requested";
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -45,7 +48,7 @@ class _FirstPageState extends State<FirstPage> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
-      body: const Center(
+      body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
         child: Column(
@@ -64,9 +67,16 @@ class _FirstPageState extends State<FirstPage> {
           // wireframe for each widget.
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
+            const Text(
               'Press the button to load Unity',
             ),
+            ElevatedButton(
+              onPressed: requestPhotosPermissionsPressed,
+              child: const Text('Request photos permissions'),
+            ),
+            Text(
+              _permissionsStatus,
+            )
           ],
         ),
       ),
@@ -76,6 +86,38 @@ class _FirstPageState extends State<FirstPage> {
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+
+  void requestPhotosPermissionsPressed() async {
+    setState(() {
+      _permissionsStatus = "Permission requested...";
+    });
+
+    await Permission.photos.onDeniedCallback(() {
+      setState(() {
+        _permissionsStatus = "Permission denied.";
+      });
+    }).onGrantedCallback(() {
+      setState(() {
+        _permissionsStatus = "Permission granted.";
+      });
+    }).onPermanentlyDeniedCallback(() {
+      setState(() {
+        _permissionsStatus = "Permission permanently denied.";
+      });
+    }).onRestrictedCallback(() {
+      setState(() {
+        _permissionsStatus = "Permission restricted.";
+      });
+    }).onLimitedCallback(() {
+      setState(() {
+        _permissionsStatus = "Permission limited.";
+      });
+    }).onProvisionalCallback(() {
+      setState(() {
+        _permissionsStatus = "Permission provisional.";
+      });
+    }).request();
   }
 
   void buttonPressed() {
